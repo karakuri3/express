@@ -1,17 +1,14 @@
-var express = require('express');
-var router = express.Router();
-const request = require('request');
+var express= require('express');
+var router= express.Router();
+const request= require('request');
 
-router.get('/', function (req, res) {
-  request('https://dog.ceo/api/breeds/image/random', function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      const data = JSON.parse(body); // Dog APIはJSON返すのでこれでOK
-      res.json(data);
-    } else {
-      console.error('Dog API error:', error || response.statusCode);
-      res.status(500).json({ error: 'Dog API request failed' });
-    }
-  });
+router.get('/', async(req, res) =>{
+request('https://api.thecatapi.com/v1/images/search', function(error, response, body) {
+if(!error&& response.statusCode== 200) {
+constdata= JSON.parse(body);
+res.json(data);
+}
 });
+})
 
-module.exports = router;
+module.exports= router;
